@@ -2,7 +2,8 @@ import { Navigation } from "@/components/Navigation";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ExperienceCard } from "@/components/ExperienceCard";
 import { ProjectCard } from "@/components/ProjectCard";
-import { useProfile, useExperience, useProjects, useSkills, useEducation } from "@/hooks/use-portfolio";
+import { BlogCard } from "@/components/BlogCard";
+import { useProfile, useExperience, useProjects, useSkills, useEducation, useBlog } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, MapPin, GraduationCap } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
@@ -14,6 +15,7 @@ export default function Home() {
   const { data: projects } = useProjects();
   const { data: skills } = useSkills();
   const { data: education } = useEducation();
+  const { data: blog } = useBlog();
 
   const safeProfile = profile;
 
@@ -141,6 +143,21 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8">
             {projects?.map((project, idx) => (
               <ProjectCard key={project.id} project={project} index={idx} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section id="blog" className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeading 
+            title="Blog & Thoughts" 
+            subtitle="Stories, insights, and reflections from my journey in security research."
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blog?.map((post, idx) => (
+              <BlogCard key={post.id} post={post} index={idx} />
             ))}
           </div>
         </div>

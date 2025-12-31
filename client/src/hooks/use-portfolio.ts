@@ -10,6 +10,14 @@ export function useProfile() {
   };
 }
 
+export function useBlog() {
+  return {
+    data: portfolioData.blog,
+    isLoading: false,
+    isError: false,
+  };
+}
+
 export function useEducation() {
   return {
     data: portfolioData.education,

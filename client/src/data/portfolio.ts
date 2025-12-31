@@ -9,6 +9,39 @@ export const portfolioData = {
     github: "https://github.com/marshalwahlexyz1",
     linkedin: "https://www.linkedin.com/in/olawaleakanji",
   },
+
+  blog: [
+    {
+      id: 1,
+      title: "Understanding Pig-Butchering Scams: A Deep Dive into Cross-Platform Fraud",
+      excerpt: "Exploring how sophisticated fraud networks operate across multiple platforms and the AI-driven approaches we're developing to detect them in real-time.",
+      content: "Full blog post content goes here...",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=60",
+      date: "December 15, 2025",
+      readTime: "8 min read",
+      tags: ["Fraud Detection", "Machine Learning", "Research"],
+    },
+    {
+      id: 2,
+      title: "My Journey from Nigerian Air Force to PhD Candidate at Boston University",
+      excerpt: "A personal reflection on transitioning from military cybersecurity operations to academic research, and the lessons learned along the way.",
+      content: "Full blog post content goes here...",
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&auto=format&fit=crop&q=60",
+      date: "November 28, 2025",
+      readTime: "6 min read",
+      tags: ["Personal", "Career", "Education"],
+    },
+    {
+      id: 3,
+      title: "How We Got 93 Predatory Loan Apps Removed from Google Play",
+      excerpt: "The technical methodology behind our security assessment pipeline that led to responsible disclosure and removal of apps with 300M+ installs.",
+      content: "Full blog post content goes here...",
+      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format&fit=crop&q=60",
+      date: "October 10, 2025",
+      readTime: "10 min read",
+      tags: ["Security", "Research", "Mobile Apps"],
+    },
+  ],
   
   education: [
     {
