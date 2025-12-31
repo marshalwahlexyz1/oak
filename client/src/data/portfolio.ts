@@ -185,7 +185,7 @@ export const portfolioData = {
       issuer: "(ISC)²",
       year: "2026",
       credentialId: "",
-      logo: "https://www.isc2.org/-/media/ISC2/Certifications/CISSP/CISSP-logo.png",
+      logo: "isc.png",
     },
   ],
 };

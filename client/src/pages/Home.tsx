@@ -204,7 +204,11 @@ export default function Home() {
                   className="bg-card p-6 rounded-xl border border-border/50 shadow-sm hover:shadow-md transition-shadow text-center"
                 >
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white shadow-sm flex items-center justify-center overflow-hidden border border-border/50">
-                    <img src={cert.logo} alt={cert.issuer} className="w-12 h-12 object-contain" />
+                    <img 
+                      src={cert.logo.startsWith('http') ? cert.logo : `${import.meta.env.BASE_URL}${cert.logo}`} 
+                      alt={cert.issuer} 
+                      className="w-12 h-12 object-contain" 
+                    />
                   </div>
                   <h4 className="font-bold text-foreground mb-1">{cert.name}</h4>
                   <p className="text-sm text-primary font-medium mb-1">{cert.issuer}</p>
