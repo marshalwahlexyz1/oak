@@ -99,28 +99,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-24 bg-secondary/30">
-        <div className="max-w-4xl mx-auto px-6">
-          <SectionHeading title="About Me" centered />
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-card rounded-2xl p-8 md:p-12 shadow-sm border border-border/50 text-lg leading-relaxed text-muted-foreground"
-          >
-            <p className="mb-6">
-              As a PhD Candidate at Boston University, my research focuses on the intersection of security, privacy, and artificial intelligence. I specialize in using <span className="text-primary font-semibold">Large Language Models (LLMs)</span> and AI-driven approaches for fraud detection in consumer financial services.
-            </p>
-            <p>
-              I am particularly interested in how LLMs can be leveraged to understand fraud patterns in conversational data—helping protect users from sophisticated scams like pig-butchering and predatory lending schemes. My work bridges cutting-edge NLP research with real-world security applications to safeguard vulnerable populations.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Experience Section */}
-      <section id="experience" className="py-24">
+      <section id="experience" className="py-24 bg-secondary/30">
         <div className="max-w-5xl mx-auto px-6">
           <SectionHeading title="Professional Experience" subtitle="My journey across academia and industry." />
           <div className="space-y-12">
@@ -282,7 +262,7 @@ export default function Home() {
               >
                 <div className="mt-1 w-16 h-16 rounded-full overflow-hidden bg-white shadow-md flex-shrink-0 border border-border/50">
                   <img 
-                    src={edu.logo} 
+                    src={`${import.meta.env.BASE_URL}${edu.logo}`} 
                     alt={`${edu.school} logo`}
                     className="w-full h-full object-contain p-2"
                   />
