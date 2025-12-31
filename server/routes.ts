@@ -66,13 +66,17 @@ async function seedDatabase() {
     title: "Cross-Platform Fraud Detection via Probabilistic State Modeling and Deep Learning",
     description: "Developing fraud detection system combining Hidden Markov Models with fine-tuned LLMs (DeBERTa) to track pig-butchering scams. Engineering cross-platform state handoff protocol. Building multi-label trigger classifier leveraging LLM embeddings. Collecting IRB-approved dataset across 7 emerging markets.",
     technologies: ["Hidden Markov Models", "LLMs", "DeBERTa", "Bayesian belief tracking", "Monte Carlo simulation"],
-    link: "#"
+    link: "#",
+    conference: null,
+    publishedAt: null
   });
   await storage.createProject({
     title: "The Cost of Convenience: Identifying, Analyzing, and Mitigating Predatory Loan Applications",
     description: "Engineered an end-to-end security assessment pipeline to audit digital lending apps across 5 countries. Implemented LLM-assisted policy-to-permission mapping. Performed responsible disclosure to Google, leading to the removal of 93 predatory apps (300M+ cumulative installs).",
     technologies: ["Static Analysis", "Dynamic Testing", "Network Traffic Inspection", "LLM"],
-    link: "#"
+    link: "#",
+    conference: "ACM AsiaCCS 2026",
+    publishedAt: "2026"
   });
 
   // Skills

@@ -33,13 +33,26 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           )}
         </div>
 
-        <h3 className="text-xl font-bold mb-3 font-display group-hover:text-primary transition-colors">
-          {project.title}
-        </h3>
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <h3 className="text-xl font-bold font-display group-hover:text-primary transition-colors">
+            {project.title}
+          </h3>
+          {project.conference && (
+            <span className="px-3 py-1 text-xs font-semibold rounded-full bg-accent text-accent-foreground whitespace-nowrap">
+              Published
+            </span>
+          )}
+        </div>
         
         <p className="text-muted-foreground mb-6 line-clamp-4 flex-grow">
           {project.description}
         </p>
+
+        {project.conference && (
+          <p className="text-sm text-muted-foreground mb-4">
+            <span className="font-semibold text-foreground">Published on:</span> {project.conference}
+          </p>
+        )}
 
         <div className="flex flex-wrap gap-2 mt-auto">
           {project.technologies.map((tech) => (

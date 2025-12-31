@@ -35,6 +35,8 @@ export const projects = pgTable("projects", {
   description: text("description").notNull(),
   technologies: jsonb("technologies").$type<string[]>().notNull(),
   link: text("link"),
+  conference: text("conference"),
+  publishedAt: text("published_at"),
 });
 
 export const skills = pgTable("skills", {
