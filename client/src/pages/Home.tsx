@@ -1,50 +1,21 @@
-import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ExperienceCard } from "@/components/ExperienceCard";
 import { ProjectCard } from "@/components/ProjectCard";
-import { useProfile, useExperience, useProjects, useSkills, useEducation, useContact } from "@/hooks/use-portfolio";
+import { useProfile, useExperience, useProjects, useSkills, useEducation } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Download, MapPin, GraduationCap, ArrowRight, Loader2, Send } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, GraduationCap } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 
 export default function Home() {
-  const { data: profile, isLoading: loadingProfile } = useProfile();
+  const { data: profile } = useProfile();
   const { data: experience } = useExperience();
   const { data: projects } = useProjects();
   const { data: skills } = useSkills();
   const { data: education } = useEducation();
-  const contact = useContact();
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    contact.mutate(formData, {
-      onSuccess: () => setFormData({ name: "", email: "", message: "" })
-    });
-  };
-
-  if (loadingProfile) {
-    return (
-      <div className="h-screen w-full flex items-center justify-center bg-background">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  // Fallback for visual generation if backend is empty during generation
-  const safeProfile = profile || {
-    name: "Olawale Amos Akanji",
-    title: "PhD Candidate in Computer Engineering",
-    bio: "Specializing in AI-driven risk modeling and fraud detection systems.",
-    location: "Boston, MA",
-    email: "akanji@bu.edu",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com"
-  };
+  const safeProfile = profile;
 
   return (
     <div className="min-h-screen bg-background">
@@ -245,88 +216,62 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-primary text-primary-foreground">
-        <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">Let's Connect</h2>
-            <p className="text-primary-foreground/70 mb-8 text-lg">
+        <div className="max-w-5xl mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">Get In Touch</h2>
+            <p className="text-primary-foreground/70 text-lg max-w-2xl mx-auto">
               I'm always open to discussing new research opportunities, collaborations, or questions about my work.
             </p>
-            
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-white/10 rounded-lg backdrop-blur-sm">
-                  <Mail className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-sm text-primary-foreground/60">Email</p>
-                  <a href={`mailto:${safeProfile.email}`} className="text-lg font-medium hover:text-accent transition-colors">
-                    {safeProfile.email}
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-white/10 rounded-lg backdrop-blur-sm">
-                  <MapPin className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-sm text-primary-foreground/60">Location</p>
-                  <p className="text-lg font-medium">{safeProfile.location}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          </motion.div>
 
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl p-8 text-foreground shadow-2xl"
+            className="flex justify-center"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
-                <Input 
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  placeholder="Your Name" 
-                  className="bg-secondary/30"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
-                <Input 
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  placeholder="your@email.com" 
-                  className="bg-secondary/30"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
-                <Textarea 
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  placeholder="How can I help you?" 
-                  className="bg-secondary/30 min-h-[120px]"
-                  required
-                />
-              </div>
-              <Button 
-                type="submit" 
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 text-base"
-              >
-                <Send className="w-5 h-5 mr-2" />
-                Send Message
-              </Button>
-            </form>
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLSfh32ie73JYj8RgEbE4V9uBjfq7eo1IWSXKgfsl3977pEx1Lw/viewform?embedded=true" 
+              width="700" 
+              height="520" 
+              frameBorder="0" 
+              marginHeight={0} 
+              marginWidth={0}
+              title="Contact form"
+              className="rounded-2xl shadow-2xl w-full max-w-2xl"
+            >
+              Loading…
+            </iframe>
           </motion.div>
+
+          <div className="mt-12 grid md:grid-cols-2 gap-8 text-center">
+            <div className="flex flex-col items-center gap-3">
+              <div className="p-3 bg-white/10 rounded-lg">
+                <Mail className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-primary-foreground/60">Email</p>
+                <a href={`mailto:${safeProfile.email}`} className="text-lg font-medium hover:text-accent transition-colors">
+                  {safeProfile.email}
+                </a>
+              </div>
+            </div>
+            
+            <div className="flex flex-col items-center gap-3">
+              <div className="p-3 bg-white/10 rounded-lg">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-primary-foreground/60">Location</p>
+                <p className="text-lg font-medium">{safeProfile.location}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
