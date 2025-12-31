@@ -8,7 +8,7 @@ const navItems = [
   { name: "Experience", to: "experience" },
   { name: "Projects", to: "projects" },
   { name: "Blog", to: "blog" },
-  { name: "Skills", to: "skills" },
+  { name: "Awards", to: "awards" },
   { name: "Education", to: "education" },
 ];
 
@@ -36,7 +36,7 @@ export function Navigation() {
           smooth={true} 
           className="font-display font-bold text-xl md:text-2xl cursor-pointer text-primary"
         >
-          OA.
+          OAK.
         </ScrollLink>
 
         {/* Desktop Nav */}

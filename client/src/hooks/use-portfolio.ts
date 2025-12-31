@@ -50,6 +50,22 @@ export function useSkills() {
   };
 }
 
+export function useAwards() {
+  return {
+    data: portfolioData.awards,
+    isLoading: false,
+    isError: false,
+  };
+}
+
+export function useCertifications() {
+  return {
+    data: portfolioData.certifications,
+    isLoading: false,
+    isError: false,
+  };
+}
+
 // --- Contact Form ---
 export function useContact() {
   const { toast } = useToast();

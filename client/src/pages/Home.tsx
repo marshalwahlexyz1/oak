@@ -3,9 +3,9 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { ExperienceCard } from "@/components/ExperienceCard";
 import { ProjectCard } from "@/components/ProjectCard";
 import { BlogCard } from "@/components/BlogCard";
-import { useProfile, useExperience, useProjects, useSkills, useEducation, useBlog } from "@/hooks/use-portfolio";
+import { useProfile, useExperience, useProjects, useSkills, useEducation, useBlog, useAwards, useCertifications } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, GraduationCap } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, GraduationCap, Trophy, Shield, Award, BadgeCheck } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
 import { Button } from "@/components/ui/button";
 
@@ -16,6 +16,8 @@ export default function Home() {
   const { data: skills } = useSkills();
   const { data: education } = useEducation();
   const { data: blog } = useBlog();
+  const { data: awards } = useAwards();
+  const { data: certifications } = useCertifications();
 
   const safeProfile = profile;
 
@@ -108,10 +110,10 @@ export default function Home() {
             className="bg-card rounded-2xl p-8 md:p-12 shadow-sm border border-border/50 text-lg leading-relaxed text-muted-foreground"
           >
             <p className="mb-6">
-              As a PhD Candidate at Boston University, my research focuses on the intersection of security, privacy, and artificial intelligence. I specialize in developing robust systems for risk modeling and fraud detection.
+              As a PhD Candidate at Boston University, my research focuses on the intersection of security, privacy, and artificial intelligence. I specialize in using <span className="text-primary font-semibold">Large Language Models (LLMs)</span> and AI-driven approaches for fraud detection in consumer financial services.
             </p>
             <p>
-              My work aims to bridge the gap between theoretical security concepts and practical, real-world applications. I am particularly interested in how probabilistic state modeling can be leveraged to detect sophisticated fraud patterns across varying platforms.
+              I am particularly interested in how LLMs can be leveraged to understand fraud patterns in conversational data—helping protect users from sophisticated scams like pig-butchering and predatory lending schemes. My work bridges cutting-edge NLP research with real-world security applications to safeguard vulnerable populations.
             </p>
           </motion.div>
         </div>
@@ -163,8 +165,76 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Awards & Certifications Section */}
+      <section id="awards" className="py-24 bg-secondary/30">
+        <div className="max-w-6xl mx-auto px-6">
+          <SectionHeading title="Awards & Certifications" subtitle="Recognition and professional credentials." centered />
+          
+          {/* Awards */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-3">
+              <Trophy className="w-6 h-6" />
+              Awards & Honors
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {awards?.map((award, idx) => (
+                <motion.div
+                  key={award.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-card p-6 rounded-xl border border-border/50 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-yellow-100 text-yellow-600 rounded-lg">
+                      {award.icon === "trophy" ? <Trophy className="w-6 h-6" /> : <Shield className="w-6 h-6" />}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-bold text-foreground">{award.title}</h4>
+                        <span className="text-sm text-muted-foreground bg-secondary px-2 py-1 rounded">{award.year}</span>
+                      </div>
+                      <p className="text-sm text-primary font-medium mb-2">{award.organization}</p>
+                      <p className="text-sm text-muted-foreground">{award.description}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Certifications */}
+          <div>
+            <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-3">
+              <BadgeCheck className="w-6 h-6" />
+              Professional Certifications
+            </h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {certifications?.map((cert, idx) => (
+                <motion.div
+                  key={cert.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-card p-6 rounded-xl border border-border/50 shadow-sm hover:shadow-md transition-shadow text-center"
+                >
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white shadow-sm flex items-center justify-center overflow-hidden border border-border/50">
+                    <img src={cert.logo} alt={cert.issuer} className="w-12 h-12 object-contain" />
+                  </div>
+                  <h4 className="font-bold text-foreground mb-1">{cert.name}</h4>
+                  <p className="text-sm text-primary font-medium mb-1">{cert.issuer}</p>
+                  <p className="text-xs text-muted-foreground">{cert.year}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Skills Section */}
-      <section id="skills" className="py-24 bg-secondary/30">
+      <section id="skills" className="py-24">
         <div className="max-w-6xl mx-auto px-6">
           <SectionHeading title="Technical Proficiency" centered />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -210,8 +280,12 @@ export default function Home() {
                 transition={{ delay: idx * 0.1 }}
                 className="flex gap-4 md:gap-8 items-start group"
               >
-                <div className="mt-1 p-3 bg-primary/5 rounded-full text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                  <GraduationCap className="w-6 h-6" />
+                <div className="mt-1 w-16 h-16 rounded-full overflow-hidden bg-white shadow-md flex-shrink-0 border border-border/50">
+                  <img 
+                    src={edu.logo} 
+                    alt={`${edu.school} logo`}
+                    className="w-full h-full object-contain p-2"
+                  />
                 </div>
                 <div className="flex-1 pb-8 border-b border-border/60 last:border-0">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">

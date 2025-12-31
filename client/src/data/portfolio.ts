@@ -26,7 +26,7 @@ export const portfolioData = {
       title: "My Journey from Nigerian Air Force to PhD Candidate at Boston University",
       excerpt: "A personal reflection on transitioning from military cybersecurity operations to academic research, and the lessons learned along the way.",
       content: "Full blog post content goes here...",
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&auto=format&fit=crop&q=60",
+      image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=60",
       date: "November 28, 2025",
       readTime: "6 min read",
       tags: ["Personal", "Career", "Education"],
@@ -50,6 +50,7 @@ export const portfolioData = {
       degree: "PhD in Computer Engineering (Security and Privacy)",
       year: "Expected May 2027",
       details: "Relevant Coursework: Advanced Cybersecurity, Computer Networks, Machine Learning, NLP",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Boston_University_seal.svg/200px-Boston_University_seal.svg.png",
     },
     {
       id: 2,
@@ -57,13 +58,15 @@ export const portfolioData = {
       degree: "MS in Computer Engineering",
       year: "May 2025",
       details: "",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Boston_University_seal.svg/200px-Boston_University_seal.svg.png",
     },
     {
       id: 3,
-      school: "Air Force Institute of Technology",
+      school: "Air Force Institute of Technology, Kaduna",
       degree: "BSc in Cybersecurity",
       year: "May 2023",
       details: "Overall Best Graduating Student, CGPA 4.99/5.0. Relevant Coursework: Network Security, Digital Forensics, Operating Systems Security",
+      logo: "https://afit.edu.ng/wp-content/uploads/2023/03/afit-logo.png",
     },
   ],
 
@@ -137,6 +140,52 @@ export const portfolioData = {
       id: 5,
       category: "Software Engineering",
       items: ["Python", "Java", "C++", "Bash", "Git/GitHub", "Docker", "CI/CD", "Linux Administration", "AWS"],
+    },
+  ],
+
+  awards: [
+    {
+      id: 1,
+      title: "Overall Best Graduating Student",
+      organization: "Air Force Institute of Technology, Kaduna",
+      year: "2023",
+      description: "Graduated with the highest CGPA of 4.99/5.0 in the Cybersecurity program.",
+      icon: "trophy",
+    },
+    {
+      id: 2,
+      title: "Google Responsible Disclosure Recognition",
+      organization: "Google",
+      year: "2025",
+      description: "Recognized for responsible disclosure leading to removal of 93 predatory apps from Google Play Store.",
+      icon: "shield",
+    },
+  ],
+
+  certifications: [
+    {
+      id: 1,
+      name: "CompTIA Security+",
+      issuer: "CompTIA",
+      year: "2022",
+      credentialId: "",
+      logo: "https://www.comptia.org/images/default-source/mainsitetemplateimages/comptia_logo_cmyk.svg",
+    },
+    {
+      id: 2,
+      name: "Certified Ethical Hacker (CEH)",
+      issuer: "EC-Council",
+      year: "2021",
+      credentialId: "",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/EC-Council_Logo.svg/200px-EC-Council_Logo.svg.png",
+    },
+    {
+      id: 3,
+      name: "AWS Certified Cloud Practitioner",
+      issuer: "Amazon Web Services",
+      year: "2023",
+      credentialId: "",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/200px-Amazon_Web_Services_Logo.svg.png",
     },
   ],
 };
