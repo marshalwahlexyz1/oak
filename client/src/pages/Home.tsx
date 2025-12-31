@@ -91,7 +91,7 @@ export default function Home() {
           >
             <div className="relative z-10 aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src={`${import.meta.env.BASE_URL}ME.jpeg`}
+                src={`${import.meta.env.BASE_URL}Me.jpeg`}
                 alt="Olawale Amos Akanji"
                 className="w-full h-full object-cover"
               />
