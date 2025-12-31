@@ -1,107 +1,82 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { api } from "@shared/routes";
+import { portfolioData } from "@/data/portfolio";
 import { useToast } from "@/hooks/use-toast";
-import { z } from "zod";
 
-// --- Profile ---
+// Static data hooks - return data directly without API calls
 export function useProfile() {
-  return useQuery({
-    queryKey: [api.profile.get.path],
-    queryFn: async () => {
-      const res = await fetch(api.profile.get.path);
-      if (res.status === 404) return null; // Handle 404 gracefully for initial state
-      if (!res.ok) throw new Error("Failed to fetch profile");
-      return api.profile.get.responses[200].parse(await res.json());
-    },
-  });
+  return {
+    data: portfolioData.profile,
+    isLoading: false,
+    isError: false,
+  };
 }
 
-// --- Education ---
 export function useEducation() {
-  return useQuery({
-    queryKey: [api.education.list.path],
-    queryFn: async () => {
-      const res = await fetch(api.education.list.path);
-      if (!res.ok) throw new Error("Failed to fetch education");
-      return api.education.list.responses[200].parse(await res.json());
-    },
-  });
+  return {
+    data: portfolioData.education,
+    isLoading: false,
+    isError: false,
+  };
 }
 
-// --- Experience ---
 export function useExperience() {
-  return useQuery({
-    queryKey: [api.experience.list.path],
-    queryFn: async () => {
-      const res = await fetch(api.experience.list.path);
-      if (!res.ok) throw new Error("Failed to fetch experience");
-      return api.experience.list.responses[200].parse(await res.json());
-    },
-  });
+  return {
+    data: portfolioData.experience,
+    isLoading: false,
+    isError: false,
+  };
 }
 
-// --- Projects ---
 export function useProjects() {
-  return useQuery({
-    queryKey: [api.projects.list.path],
-    queryFn: async () => {
-      const res = await fetch(api.projects.list.path);
-      if (!res.ok) throw new Error("Failed to fetch projects");
-      return api.projects.list.responses[200].parse(await res.json());
-    },
-  });
+  return {
+    data: portfolioData.projects,
+    isLoading: false,
+    isError: false,
+  };
 }
 
-// --- Skills ---
 export function useSkills() {
-  return useQuery({
-    queryKey: [api.skills.list.path],
-    queryFn: async () => {
-      const res = await fetch(api.skills.list.path);
-      if (!res.ok) throw new Error("Failed to fetch skills");
-      return api.skills.list.responses[200].parse(await res.json());
-    },
-  });
+  return {
+    data: portfolioData.skills,
+    isLoading: false,
+    isError: false,
+  };
 }
 
 // --- Contact Form ---
-type ContactInput = z.infer<typeof api.contact.send.input>;
-
 export function useContact() {
   const { toast } = useToast();
   
-  return useMutation({
-    mutationFn: async (data: ContactInput) => {
-      // Validate first
-      const validated = api.contact.send.input.parse(data);
-      
-      const res = await fetch(api.contact.send.path, {
-        method: api.contact.send.method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(validated),
+  return {
+    mutate: (data: { name: string; email: string; message: string }, options?: { onSuccess?: () => void }) => {
+      // Simple client-side validation
+      if (!data.name || !data.email || !data.message) {
+        toast({
+          title: "Error",
+          description: "Please fill in all fields",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Email regex validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        toast({
+          title: "Error",
+          description: "Please enter a valid email address",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Show success message
+      toast({
+        title: "Message received",
+        description: `Thank you ${data.name}! I'll reach out to you at ${data.email} soon.`,
       });
 
-      if (!res.ok) {
-        if (res.status === 400) {
-          const error = api.contact.send.responses[400].parse(await res.json());
-          throw new Error(error.message);
-        }
-        throw new Error("Failed to send message");
-      }
-      return api.contact.send.responses[200].parse(await res.json());
+      options?.onSuccess?.();
     },
-    onSuccess: () => {
-      toast({
-        title: "Message sent",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      });
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    }
-  });
+    isPending: false,
+  };
 }

@@ -17,13 +17,12 @@ export default function Home() {
   const { data: projects } = useProjects();
   const { data: skills } = useSkills();
   const { data: education } = useEducation();
-  const contactMutation = useContact();
-
+  const contact = useContact();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    contactMutation.mutate(formData, {
+    contact.mutate(formData, {
       onSuccess: () => setFormData({ name: "", email: "", message: "" })
     });
   };
@@ -321,15 +320,10 @@ export default function Home() {
               </div>
               <Button 
                 type="submit" 
-                disabled={contactMutation.isPending}
                 className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 text-base"
               >
-                {contactMutation.isPending ? (
-                  <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                ) : (
-                  <Send className="w-5 h-5 mr-2" />
-                )}
-                {contactMutation.isPending ? "Sending..." : "Send Message"}
+                <Send className="w-5 h-5 mr-2" />
+                Send Message
               </Button>
             </form>
           </motion.div>
