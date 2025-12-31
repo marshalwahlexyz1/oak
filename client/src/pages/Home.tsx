@@ -82,16 +82,19 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Abstract visual or profile image placeholder */}
+          {/* Profile Image */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative hidden md:block"
           >
-            <div className="relative z-10 aspect-[4/5] bg-gradient-to-br from-primary to-primary/80 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center p-12">
-              <div className="text-primary-foreground/20 text-9xl font-display font-bold">OA.</div>
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+            <div className="relative z-10 aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src={`${import.meta.env.BASE_URL}ME.jpeg`}
+                alt="Olawale Amos Akanji"
+                className="w-full h-full object-cover"
+              />
             </div>
             {/* Decorative frame */}
             <div className="absolute -z-10 top-8 -right-8 w-full h-full border-2 border-accent rounded-2xl"></div>
