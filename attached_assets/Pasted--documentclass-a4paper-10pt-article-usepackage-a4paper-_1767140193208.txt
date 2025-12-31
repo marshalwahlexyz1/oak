@@ -1,0 +1,127 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[a4paper,margin=0.6in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{noto}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage[dvipsnames]{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NavyBlue,
+  urlcolor=NavyBlue
+}
+
+\setlength{\parskip}{4pt}
+\renewcommand{\baselinestretch}{1.05}
+\titleformat{\section}{\large\bfseries\color{NavyBlue}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{1.2ex}{0.8ex}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE \textbf{Olawale Amos Akanji}} \\[0.25em]
+  Boston, MA, USA \\[0.2em]
+  +1 857-465-0911 \;|\; \href{mailto:olawalea@bu.edu}{olawalea@bu.edu} \\[0.2em]
+  LinkedIn: \href{https://www.linkedin.com/in/olawaleakanji}{linkedin.com/in/olawaleakanji} \;|\; GitHub: \href{https://github.com/marshalwahlexyz1}{github.com/marshalwahlexyz1} \\[0.2em]
+  Anticipated PhD Graduation: May 2027
+\end{center}
+
+\vspace{0.4em}
+\hrule
+\vspace{0.6em}
+
+\section*{Professional Summary}
+PhD candidate specializing in AI-driven risk modeling and fraud detection systems for consumer financial services. Research combines Natural Language Processing, Deep Learning, and probabilistic modeling to detect complex fraud patterns across digital platforms. Experience includes building ML-powered compliance verification systems, cross-platform fraud detection architectures, and automated risk assessment tools. Proven track record of translating cutting-edge research into real-world impact—work led to removal of 100M+ install predatory financial apps from Google Play. Seeking to apply expertise in machine learning, financial fraud detection, and ethical AI to JPMorgan's Consumer \& Community Banking Risk Modeling challenges.
+
+
+\section*{Education}
+\textbf{Boston University}, Boston, MA, USA \hfill Expected May 2027 \\
+PhD in Computer Engineering (Security and Privacy) \\
+MS in Computer Engineering \hfill May 2025 \\
+\textit{Relevant Coursework:} Advanced Cybersecurity, Computer Networks, Machine Learning, NLP, 
+
+\textbf{Air Force Institute of Technology}, Kaduna, Nigeria \hfill May 2023 \\
+BSc in Cybersecurity, Overall Best Graduating Student, CGPA 4.99/5.0 \\
+\textit{Relevant Coursework:} Network Security, Digital Forensics, Operating Systems Security
+
+\section*{Research \& Technical Projects}
+\textbf{Doctoral Research Fellow} \hfill 2023--Present \\
+Boston University, Department of Electrical and Computer Engineering, Boston, MA
+\begin{itemize}[leftmargin=1.2em, topsep=2pt, itemsep=1pt]
+  \item \textbf{Project: Cross-Platform Fraud Detection via Probabilistic State Modeling and Deep Learning}
+\begin{itemize}
+      \item Developing fraud detection system combining Hidden Markov Models with \textbf{fine-tuned LLMs} (DeBERTa) to track pig-butchering scams (\$5.8-9.2B annual losses) through five conversation states using Bayesian belief tracking, directly applicable to sequential credit risk and fraud modeling.
+    \item Engineering cross-platform state handoff protocol maintaining detection continuity when fraudsters pivot between messaging apps, addressing multi-channel fraud in omnichannel banking ecosystems.
+    \item Building multi-label trigger classifier leveraging LLM embeddings with state-dependent risk scoring to identify psychological manipulation tactics across conversation stages.
+    \item Collecting IRB-approved dataset across 7 emerging markets with hierarchical annotations to train culturally robust models; applying Monte Carlo simulation for adversarial testing and ensuring regulatory-compliant model interpretability.
+
+
+\end{itemize}
+\item \textbf{Project: The Cost of Convenience: Identifying, Analyzing, and Mitigating Predatory Loan Applications on Android (Accepted at ACM AsiaCCS 2026)}
+    \begin{itemize}
+        \item Engineered an end-to-end security assessment pipeline to audit digital lending apps across 5 countries against national regulations and Google's Financial Services Policy, processing and analyzing hundreds of applications at scale.
+        \item Implemented LLM-assisted policy-to-permission mapping to translate legal requirements into testable security checks, combining static analysis (Androguard, FlowDroid), dynamic testing, and network traffic inspection to detect non-compliance.
+        \item Performed responsible disclosure to Google, leading to the removal of 93 predatory apps (300M+ cumulative installs) that were exfiltrating sensitive user data without consent—demonstrating impact at platform scale.
+    \end{itemize}
+\end{itemize}
+
+\section*{Professional Experience}
+
+\textbf{Graduate Teaching Assistant, EC521 Cybersecurity} \hfill 2024--2025 \\
+Boston University
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt]
+  \item Designed and deployed Capture-The-Flag (CTF) environments simulating Network Flooding (SYN/UDP floods) to test student defense strategies.
+  \item Mentored 50+ graduate students on practical mitigation techniques for web vulnerabilities using Burp Suite and Linux.
+  \item Developed hands-on curriculum modules focusing on machine learning security, reverse engineering of malware binaries, and secure coding practices.
+\end{itemize}
+
+
+\textbf{Network Security Engineer Intern} \hfill 2021--2022 \\
+Galaxy Backbone Limited (Tier IV Data Center), Abuja, Nigeria
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt]
+  \item Defended Tier IV Data Center infrastructure against volumetric DDoS attacks and SQL injections, maintaining 99.99\% uptime for government clients.
+  \item Utilized Splunk for real-time traffic correlation and Palo Alto Firewalls to block malicious IPs and mitigate threats during active campaigns.
+  \item Engineered Python scripts integrated with EDR telemetry to reduce Time-to-Detect (TTD) by 40\% during critical vulnerabilities like Log4Shell.
+  \item Conducted comprehensive vulnerability scans using Nessus across 200+ Windows/Linux servers, prioritizing remediation based on business risk.
+\end{itemize}
+
+\textbf{Cybersecurity Specialist (Veteran)} \hfill 2012--2023 \\
+Nigerian Air Force, Nigeria
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt]
+  \item Implemented custom Snort rules and spectrum analysis protocols to protect Command \& Control (C2) links from electronic warfare interference.
+  \item Deployed network segmentation on Cisco IOS and Linux gateways to isolate mission-critical subnets from compromised endpoints.
+  \item Performed deep packet inspection using Wireshark and Tcpdump to neutralize anomalous command traffic targeting air defense systems.
+\end{itemize}
+
+
+\section*{Technical Skills}
+\begin{itemize}[leftmargin=1.2em, itemsep=1pt]
+  \item \textbf{Machine Learning \& Deep Learning:} PyTorch, TensorFlow, Scikit-learn, XGBoost, Transformer architectures (BERT, GPT, DeBERTa), Transfer Learning, Reinforcement Learning concepts, Model Interpretability (SHAP, LIME), Hyperparameter Optimization.
+  \item \textbf{Probabilistic Methods \& Statistics:} Hidden Markov Models, Bayesian Inference, Monte Carlo Simulation, Markov Chains, Probability Theory, Sequential Decision Processes, State Space Models, Time Series Forecasting, A/B Testing, Hypothesis Testing.
+  \item \textbf{NLP \& Large Language Models:} HuggingFace Transformers, Prompt Engineering, Fine-tuning LLMs, Text Classification, Named Entity Recognition, Sentiment Analysis, Conversational AI, Semantic Embedding Models.
+  \item \textbf{Data Science \& Analytics:} Python (NumPy, Pandas, Matplotlib, Seaborn), SQL, PySpark, Hadoop, Statistical Modeling, Time Series Analysis, Probabilistic Graphical Models, Hidden Markov Models, Monte Carlo Simulation.
+  \item \textbf{Software Engineering:} Python, Java, C++, Bash, Git/GitHub, Docker, CI/CD, Linux Administration, AWS (EC2, S3, Lambda, SageMaker).
+
+\end{itemize}
+
+\section*{Certifications}
+\textbf{AWS Certified Solutions Architect – Associate} \hfill 2022
+
+\section*{Leadership and Professional Service}
+\textbf{Program Committee, ACSAC 2025 Artifact Evaluation} \hfill 2025 \\
+Assessed research artifacts for reproducibility, ensuring high standards for published security tools.
+
+\textbf{Founding President, African Graduate Student Association (BU-AGSA)} \hfill 2025--Present \\
+Lead a diverse student organization, managing events and fostering industry networking opportunities.
+
+\section*{Honors and Awards}
+\textbf{Boston University Doctoral Research Fellowship} \hfill 2024 \\
+\textbf{Boston University Distinguished Computer Engineering Fellowship} \hfill 2023 \\
+\textbf{Best Graduating Student, Cybersecurity Department} \hfill 2023
+
+\end{document}
