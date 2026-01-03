@@ -2,7 +2,7 @@ export const portfolioData = {
   profile: {
     id: 1,
     name: "Olawale Amos Akanji",
-    title: "PhD Candidate in Computer Engineering (Security and Privacy)",
+    title: "PhD Candidate in Computer Engineering (Security and Privacy) at Boston University",
     bio: "PhD candidate specializing in AI-driven fraud detection using Large Language Models (LLMs) for consumer financial services. My research focuses on how LLMs can understand fraud patterns in conversational data—helping protect users from sophisticated scams like pig-butchering and predatory lending schemes. Work led to removal of 100M+ install predatory apps from Google Play, demonstrating real-world impact at platform scale.",
     location: "Boston, MA, USA",
     email: "olawalea@bu.edu",

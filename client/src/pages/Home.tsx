@@ -5,7 +5,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { BlogCard } from "@/components/BlogCard";
 import { useProfile, useExperience, useProjects, useSkills, useEducation, useBlog, useAwards, useCertifications } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, GraduationCap, Trophy, Shield, Award, BadgeCheck } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, GraduationCap, Trophy, Shield, Award, BadgeCheck, Newspaper } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
 import { Button } from "@/components/ui/button";
 
@@ -25,8 +25,30 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Navigation />
 
+      {/* News Ticker */}
+      <div className="fixed top-16 left-0 right-0 z-40 bg-gradient-to-r from-primary via-primary/90 to-primary overflow-hidden py-2">
+        <motion.div
+          className="flex items-center gap-8 whitespace-nowrap"
+          animate={{ x: ["100%", "-100%"] }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+          {[1, 2, 3].map((i) => (
+            <span key={i} className="flex items-center gap-3 text-primary-foreground font-medium">
+              <Newspaper className="w-4 h-4" />
+              <span className="text-yellow-300">📰 NEWS:</span>
+              Paper Accepted at ACM AsiaCCS 2026 — "The Cost of Convenience: Identifying, Analyzing, and Mitigating Predatory Loan Applications"
+              <span className="mx-8">•</span>
+            </span>
+          ))}
+        </motion.div>
+      </div>
+
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+      <section id="hero" className="min-h-screen flex items-center justify-center pt-28 relative overflow-hidden">
         {/* Animated background decorative elements */}
         <motion.div 
           className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"
@@ -167,10 +189,10 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Profile Image */}
+          {/* Profile Image with Certifications */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.5, rotateY: -30 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ 
               duration: 1,
               delay: 0.3,
@@ -178,96 +200,122 @@ export default function Home() {
               stiffness: 100,
               damping: 15
             }}
-            whileHover={{ 
-              scale: 1.02,
-              rotateY: 5,
-              transition: { duration: 0.3 }
-            }}
-            className="relative hidden md:block perspective-1000"
+            className="relative hidden md:flex flex-col items-center gap-8"
           >
-            {/* Animated glow effect */}
-            <motion.div
-              className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 rounded-3xl blur-xl"
-              animate={{
-                opacity: [0.5, 0.8, 0.5],
-                scale: [1, 1.05, 1],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-            {/* Floating particles */}
-            <motion.div
-              className="absolute -top-2 -right-2 w-4 h-4 bg-accent rounded-full"
-              animate={{
-                y: [0, -10, 0],
-                opacity: [0.7, 1, 0.7],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.div
-              className="absolute top-1/4 -left-3 w-3 h-3 bg-primary rounded-full"
-              animate={{
-                y: [0, -15, 0],
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5
-              }}
-            />
-            <motion.div
-              className="absolute bottom-1/4 -right-4 w-2 h-2 bg-accent rounded-full"
-              animate={{
-                y: [0, -8, 0],
-                opacity: [0.6, 1, 0.6],
-              }}
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1
-              }}
-            />
-
+            {/* Smaller Profile Image Container */}
             <motion.div 
-              className="relative z-10 aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl"
-              initial={{ clipPath: "circle(0% at 50% 50%)" }}
-              animate={{ clipPath: "circle(100% at 50% 50%)" }}
-              transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+              className="relative w-48 h-60"
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.3 }
+              }}
             >
-              <motion.img 
-                src={`${import.meta.env.BASE_URL}Me.jpeg`}
-                alt="Olawale Amos Akanji"
-                className="w-full h-full object-cover"
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-              />
-              {/* Shine effect on hover */}
+              {/* Animated glow effect */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent"
-                initial={{ x: "-100%", opacity: 0 }}
-                whileHover={{ x: "100%", opacity: 1 }}
-                transition={{ duration: 0.6 }}
+                className="absolute -inset-3 bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 rounded-2xl blur-lg"
+                animate={{
+                  opacity: [0.5, 0.8, 0.5],
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Floating particles */}
+              <motion.div
+                className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full"
+                animate={{
+                  y: [0, -8, 0],
+                  opacity: [0.7, 1, 0.7],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div
+                className="absolute top-1/4 -left-2 w-2 h-2 bg-primary rounded-full"
+                animate={{
+                  y: [0, -10, 0],
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5
+                }}
+              />
+
+              <motion.div 
+                className="relative z-10 w-full h-full rounded-xl overflow-hidden shadow-xl"
+                initial={{ clipPath: "circle(0% at 50% 50%)" }}
+                animate={{ clipPath: "circle(100% at 50% 50%)" }}
+                transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+              >
+                <motion.img 
+                  src={`${import.meta.env.BASE_URL}Me.jpeg`}
+                  alt="Olawale Amos Akanji"
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                />
+                {/* Shine effect on hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent"
+                  initial={{ x: "-100%", opacity: 0 }}
+                  whileHover={{ x: "100%", opacity: 1 }}
+                  transition={{ duration: 0.6 }}
+                />
+              </motion.div>
+              
+              {/* Decorative frame */}
+              <motion.div 
+                className="absolute -z-10 top-4 -right-4 w-full h-full border-2 border-accent rounded-xl"
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
               />
             </motion.div>
-            
-            {/* Decorative frame with animation */}
-            <motion.div 
-              className="absolute -z-10 top-8 -right-8 w-full h-full border-2 border-accent rounded-2xl"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            />
+
+            {/* Professional Certifications beside image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="w-full max-w-sm"
+            >
+              <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider mb-4 flex items-center gap-2 justify-center">
+                <BadgeCheck className="w-4 h-4" />
+                Certifications
+              </h4>
+              <div className="flex flex-wrap justify-center gap-4">
+                {certifications?.map((cert, idx) => (
+                  <motion.div
+                    key={cert.id}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1 + idx * 0.15 }}
+                    whileHover={{ scale: 1.1, y: -5 }}
+                    className="bg-card p-3 rounded-lg border border-border/50 shadow-sm flex flex-col items-center gap-2 min-w-[100px]"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center overflow-hidden border border-border/30">
+                      <img 
+                        src={cert.logo.startsWith('http') ? cert.logo : `${import.meta.env.BASE_URL}${cert.logo}`} 
+                        alt={cert.issuer} 
+                        className="w-8 h-8 object-contain" 
+                      />
+                    </div>
+                    <span className="text-xs font-medium text-foreground text-center">{cert.name}</span>
+                    <span className="text-[10px] text-muted-foreground">{cert.year}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
