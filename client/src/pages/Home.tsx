@@ -27,9 +27,32 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
+        {/* Animated background decorative elements */}
+        <motion.div 
+          className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.5, 0.7, 0.5],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
 
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <motion.div 
@@ -37,67 +60,214 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="inline-block px-4 py-2 rounded-full bg-secondary text-primary font-medium text-sm mb-6">
+            <motion.div 
+              className="inline-block px-4 py-2 rounded-full bg-secondary text-primary font-medium text-sm mb-6"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ scale: 1.05 }}
+            >
               Security & Privacy Researcher
-            </div>
+            </motion.div>
             <h1 className="text-5xl md:text-7xl font-bold font-display text-primary leading-[1.1] mb-6">
               {safeProfile.name.split(" ").map((word, i) => (
-                <span key={i} className="block">{word}</span>
+                <motion.span 
+                  key={i} 
+                  className="block"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.3 + i * 0.15,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                >
+                  {word}
+                </motion.span>
               ))}
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-lg font-light">
+            <motion.p 
+              className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-lg font-light"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
               {safeProfile.title}
-            </p>
-            <p className="text-lg text-foreground/80 mb-10 max-w-lg">
+            </motion.p>
+            <motion.p 
+              className="text-lg text-foreground/80 mb-10 max-w-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
+            >
               {safeProfile.bio}
-            </p>
+            </motion.p>
             
-            <div className="flex flex-wrap gap-4">
+            <motion.div 
+              className="flex flex-wrap gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.1 }}
+            >
               <ScrollLink to="projects" smooth={true} offset={-50}>
-                <Button size="lg" className="rounded-full px-8 h-12 text-base font-medium">
-                  View Research
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button size="lg" className="rounded-full px-8 h-12 text-base font-medium">
+                    View Research
+                  </Button>
+                </motion.div>
               </ScrollLink>
               <ScrollLink to="contact" smooth={true} offset={-50}>
-                <Button variant="outline" size="lg" className="rounded-full px-8 h-12 text-base font-medium border-primary/20 hover:bg-primary/5">
-                  Contact Me
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button variant="outline" size="lg" className="rounded-full px-8 h-12 text-base font-medium border-primary/20 hover:bg-primary/5">
+                    Contact Me
+                  </Button>
+                </motion.div>
               </ScrollLink>
-            </div>
+            </motion.div>
 
-            <div className="flex items-center gap-6 mt-12">
+            <motion.div 
+              className="flex items-center gap-6 mt-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.3 }}
+            >
               {safeProfile.github && (
-                <a href={safeProfile.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <motion.a 
+                  href={safeProfile.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
                   <Github className="w-6 h-6" />
-                </a>
+                </motion.a>
               )}
               {safeProfile.linkedin && (
-                <a href={safeProfile.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <motion.a 
+                  href={safeProfile.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  whileHover={{ scale: 1.2, rotate: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
                   <Linkedin className="w-6 h-6" />
-                </a>
+                </motion.a>
               )}
-              <a href={`mailto:${safeProfile.email}`} className="text-muted-foreground hover:text-primary transition-colors">
+              <motion.a 
+                href={`mailto:${safeProfile.email}`} 
+                className="text-muted-foreground hover:text-primary transition-colors"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <Mail className="w-6 h-6" />
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           </motion.div>
 
           {/* Profile Image */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative hidden md:block"
+            initial={{ opacity: 0, scale: 0.5, rotateY: -30 }}
+            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{ 
+              duration: 1,
+              delay: 0.3,
+              type: "spring",
+              stiffness: 100,
+              damping: 15
+            }}
+            whileHover={{ 
+              scale: 1.02,
+              rotateY: 5,
+              transition: { duration: 0.3 }
+            }}
+            className="relative hidden md:block perspective-1000"
           >
-            <div className="relative z-10 aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-              <img 
+            {/* Animated glow effect */}
+            <motion.div
+              className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 rounded-3xl blur-xl"
+              animate={{
+                opacity: [0.5, 0.8, 0.5],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            
+            {/* Floating particles */}
+            <motion.div
+              className="absolute -top-2 -right-2 w-4 h-4 bg-accent rounded-full"
+              animate={{
+                y: [0, -10, 0],
+                opacity: [0.7, 1, 0.7],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div
+              className="absolute top-1/4 -left-3 w-3 h-3 bg-primary rounded-full"
+              animate={{
+                y: [0, -15, 0],
+                opacity: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5
+              }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 -right-4 w-2 h-2 bg-accent rounded-full"
+              animate={{
+                y: [0, -8, 0],
+                opacity: [0.6, 1, 0.6],
+              }}
+              transition={{
+                duration: 1.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+            />
+
+            <motion.div 
+              className="relative z-10 aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl"
+              initial={{ clipPath: "circle(0% at 50% 50%)" }}
+              animate={{ clipPath: "circle(100% at 50% 50%)" }}
+              transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+            >
+              <motion.img 
                 src={`${import.meta.env.BASE_URL}Me.jpeg`}
                 alt="Olawale Amos Akanji"
                 className="w-full h-full object-cover"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.5 }}
               />
-            </div>
-            {/* Decorative frame */}
-            <div className="absolute -z-10 top-8 -right-8 w-full h-full border-2 border-accent rounded-2xl"></div>
+              {/* Shine effect on hover */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent"
+                initial={{ x: "-100%", opacity: 0 }}
+                whileHover={{ x: "100%", opacity: 1 }}
+                transition={{ duration: 0.6 }}
+              />
+            </motion.div>
+            
+            {/* Decorative frame with animation */}
+            <motion.div 
+              className="absolute -z-10 top-8 -right-8 w-full h-full border-2 border-accent rounded-2xl"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            />
           </motion.div>
         </div>
       </section>
