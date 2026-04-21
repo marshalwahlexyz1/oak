@@ -15,18 +15,7 @@ import {
   useSkills,
 } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
-import {
-  ArrowUpRight,
-  BadgeCheck,
-  FileText,
-  Github,
-  Linkedin,
-  Mail,
-  MapPin,
-  Shield,
-  Sparkles,
-  Trophy,
-} from "lucide-react";
+import { ArrowUpRight, BadgeCheck, FileText, Github, Linkedin, Mail, MapPin, Newspaper, Shield, Sparkles, Trophy } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
 
 export default function Home() {
@@ -38,12 +27,17 @@ export default function Home() {
   const { data: blog } = useBlog();
   const { data: awards } = useAwards();
   const { data: certifications } = useCertifications();
-
   const safeProfile = profile;
   const updates = blog ?? [];
   const latestHighlights = updates.slice(0, 3);
   const featuredAward = awards?.[0];
   const additionalAwards = awards?.slice(1) ?? [];
+  const newsItems = [
+    "CISE Best Paper Award 2026 for The Cost of Convenience",
+    "DIMVA '26 accepted paper in Chania, Greece, July 1-3, 2026",
+    "ACM ASIACCS 2026 paper in Bangalore, India, June 1-5, 2026",
+    "ABSURD'26 short talk on LLM-assisted fraud detection",
+  ];
 
   const impactStats = [
     {
@@ -74,7 +68,24 @@ export default function Home() {
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(209,151,42,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(21,45,84,0.12),transparent_34%)]" />
       <Navigation />
 
-      <section id="hero" className="relative overflow-hidden pb-20 pt-32">
+      <div className="fixed left-0 right-0 top-[72px] z-40 overflow-hidden border-y border-primary/10 bg-primary py-2 text-primary-foreground shadow-sm">
+        <motion.div
+          className="flex min-w-max items-center gap-8 whitespace-nowrap"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+        >
+          {[...newsItems, ...newsItems].map((item, index) => (
+            <div key={`${item}-${index}`} className="flex items-center gap-3 px-2 text-sm font-medium">
+              <Newspaper className="h-4 w-4 text-accent" />
+              <span className="font-semibold uppercase tracking-[0.18em] text-accent">News Flash</span>
+              <span>{item}</span>
+              <span className="text-accent/80">•</span>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      <section id="hero" className="relative overflow-hidden pb-20 pt-44">
         <motion.div
           className="absolute left-[-8rem] top-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl"
           animate={{ scale: [1, 1.15, 1], opacity: [0.45, 0.65, 0.45] }}
@@ -101,8 +112,8 @@ export default function Home() {
               {safeProfile.name}
             </p>
             <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-[0.98] text-primary md:text-7xl">
-              Security research with
-              <span className="block text-accent">real-world platform impact.</span>
+              Security and privacy research with
+              <span className="block text-accent">real-world impact.</span>
             </h1>
 
             <p className="mt-6 max-w-3xl text-xl font-semibold text-foreground/85 md:text-2xl">
@@ -259,18 +270,6 @@ export default function Home() {
                           {item.status}
                         </span>
                       </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-5 flex flex-wrap gap-3">
-                  {certifications?.map((cert) => (
-                    <div
-                      key={cert.id}
-                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-white/80"
-                    >
-                      <BadgeCheck className="h-4 w-4 text-accent" />
-                      {cert.name}
                     </div>
                   ))}
                 </div>

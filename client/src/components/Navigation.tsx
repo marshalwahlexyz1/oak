@@ -39,7 +39,7 @@ export function Navigation() {
             OAK
           </span>
           <span className="hidden text-sm font-semibold tracking-[0.25em] text-primary/70 md:block">
-            OL AWALE AKANJI
+            OLAWALE AKANJI
           </span>
         </ScrollLink>
 
