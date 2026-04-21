@@ -14,11 +14,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="group bg-card rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-xl hover:border-accent/20 transition-all duration-300 flex flex-col h-full"
+      className="group flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-white/10 shadow-xl shadow-black/10 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-white/15"
     >
       <div className="p-8 flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-4">
-          <div className="p-3 rounded-lg bg-primary/5 text-primary">
+          <div className="rounded-2xl bg-white/10 p-3 text-accent">
             <Code2 className="w-6 h-6" />
           </div>
           {project.link && (
@@ -34,23 +34,23 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         <div className="flex items-start justify-between gap-3 mb-3">
-          <h3 className="text-xl font-bold font-display group-hover:text-primary transition-colors">
+          <h3 className="text-xl font-bold font-display text-white transition-colors group-hover:text-accent">
             {project.title}
           </h3>
-          {project.conference && (
-            <span className="px-3 py-1 text-xs font-semibold rounded-full bg-accent text-accent-foreground whitespace-nowrap">
-              Published
+          {project.publishedAt && (
+            <span className="whitespace-nowrap rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
+              {project.publishedAt}
             </span>
           )}
         </div>
         
-        <p className="text-muted-foreground mb-6 line-clamp-4 flex-grow">
+        <p className="mb-6 flex-grow line-clamp-4 text-primary-foreground/72">
           {project.description}
         </p>
 
         {project.conference && (
-          <p className="text-sm text-muted-foreground mb-4">
-            <span className="font-semibold text-foreground">Published on:</span> {project.conference}
+          <p className="mb-4 text-sm text-primary-foreground/72">
+            <span className="font-semibold text-white">Venue:</span> {project.conference}
           </p>
         )}
 
@@ -58,7 +58,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           {project.technologies.map((tech) => (
             <span 
               key={tech} 
-              className="px-3 py-1 text-xs font-medium rounded-full bg-secondary text-secondary-foreground border border-border"
+              className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-primary-foreground"
             >
               {tech}
             </span>

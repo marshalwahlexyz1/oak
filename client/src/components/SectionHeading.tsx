@@ -15,12 +15,16 @@ export function SectionHeading({ title, subtitle, centered = false }: SectionHea
       transition={{ duration: 0.5 }}
       className={`mb-12 ${centered ? "text-center" : ""}`}
     >
-      <h2 className="text-3xl md:text-4xl font-bold font-display text-primary relative inline-block">
+      <h2 className="relative inline-block pb-4 text-3xl font-bold font-display text-primary md:text-4xl">
         {title}
-        <span className="absolute -bottom-2 left-0 w-1/3 h-1 bg-accent rounded-full"></span>
+        <span
+          className={`absolute bottom-0 h-1 rounded-full bg-accent ${
+            centered ? "left-1/2 w-24 -translate-x-1/2" : "left-0 w-20"
+          }`}
+        ></span>
       </h2>
       {subtitle && (
-        <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
+        <p className={`mt-4 max-w-2xl text-lg text-muted-foreground ${centered ? "mx-auto" : ""}`}>
           {subtitle}
         </p>
       )}

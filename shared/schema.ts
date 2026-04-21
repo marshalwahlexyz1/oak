@@ -51,6 +51,12 @@ export const insertExperienceSchema = createInsertSchema(experience);
 export const insertProjectSchema = createInsertSchema(projects);
 export const insertSkillSchema = createInsertSchema(skills);
 
+export type InsertProfile = typeof profile.$inferInsert;
+export type InsertEducation = typeof education.$inferInsert;
+export type InsertExperience = typeof experience.$inferInsert;
+export type InsertProject = typeof projects.$inferInsert;
+export type InsertSkill = typeof skills.$inferInsert;
+
 export type Profile = typeof profile.$inferSelect;
 export type Education = typeof education.$inferSelect;
 export type Experience = typeof experience.$inferSelect;

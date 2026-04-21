@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -31,15 +31,23 @@
   --input: 214.3 31.8% 91.4%;
   --ring: 220 45% 25%;
   
-  --radius: 0.3rem;
+  --radius: 1rem;
 
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Playfair Display', serif;
+  --font-sans: 'Manrope', sans-serif;
+  --font-display: 'Fraunces', serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
+    background:
+      radial-gradient(circle at top left, hsl(var(--accent) / 0.12), transparent 34%),
+      radial-gradient(circle at top right, hsl(var(--primary) / 0.1), transparent 32%),
+      linear-gradient(180deg, hsl(var(--secondary) / 0.75) 0%, hsl(var(--background)) 18%, hsl(var(--background)) 100%);
     @apply bg-background text-foreground antialiased font-sans selection:bg-primary/10 selection:text-primary;
   }
   
@@ -57,11 +65,6 @@
 }
 ::-webkit-scrollbar-thumb {
   @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40 transition-colors;
-}
-
-/* Smooth Scroll behavior is handled by react-scroll but this helps generally */
-html {
-  scroll-behavior: smooth;
 }
 
 .glass-card {

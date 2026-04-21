@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { ArrowRight, Calendar, FileText, Mic, Trophy } from "lucide-react";
 
 interface BlogPost {
   id: number;
@@ -8,8 +8,12 @@ interface BlogPost {
   content: string;
   image: string;
   date: string;
-  readTime: string;
+  detail: string;
   tags: string[];
+  kind: string;
+  venue: string;
+  status: string;
+  ctaLabel: string;
 }
 
 interface BlogCardProps {
@@ -17,65 +21,88 @@ interface BlogCardProps {
   index: number;
 }
 
+const cardStyles = {
+  award: {
+    label: "Award",
+    icon: Trophy,
+    shell: "from-primary via-primary to-accent",
+  },
+  paper: {
+    label: "Paper",
+    icon: FileText,
+    shell: "from-slate-900 via-primary to-teal-700",
+  },
+  talk: {
+    label: "Talk",
+    icon: Mic,
+    shell: "from-amber-700 via-primary to-slate-900",
+  },
+} as const;
+
 export function BlogCard({ post, index }: BlogCardProps) {
+  const style = cardStyles[post.kind as keyof typeof cardStyles] ?? cardStyles.paper;
+  const Icon = style.icon;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="group bg-card rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-lg transition-all duration-300"
+      className="group overflow-hidden rounded-[28px] border border-border/60 bg-white/90 shadow-lg shadow-slate-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
     >
-      {/* Image */}
-      <div className="aspect-video overflow-hidden">
-        <img
-          src={post.image}
-          alt={post.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+      <div className={`relative overflow-hidden bg-gradient-to-br ${style.shell} p-6 text-white`}>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.24),transparent_42%)]"></div>
+        <div className="relative z-10 flex items-start justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="rounded-2xl bg-white/15 p-3 backdrop-blur">
+              <Icon className="h-5 w-5" />
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/75">
+                {style.label}
+              </p>
+              <p className="text-sm text-white/80">{post.venue}</p>
+            </div>
+          </div>
+          <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white">
+            {post.status}
+          </span>
+        </div>
+
+        <h3 className="relative z-10 mt-8 text-2xl font-bold leading-tight text-white">
+          {post.title}
+        </h3>
       </div>
 
-      {/* Content */}
       <div className="p-6">
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-3">
+        <div className="mb-4 flex flex-wrap gap-2">
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full"
+              className="rounded-full bg-primary/8 px-3 py-1 text-xs font-semibold text-primary"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        {/* Title */}
-        <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-          {post.title}
-        </h3>
+        <p className="mb-5 line-clamp-4 text-muted-foreground">{post.excerpt}</p>
 
-        {/* Excerpt */}
-        <p className="text-muted-foreground mb-4 line-clamp-3">
-          {post.excerpt}
-        </p>
-
-        {/* Meta */}
-        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-          <div className="flex items-center gap-1">
-            <Calendar className="w-4 h-4" />
+        <div className="mb-5 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <Calendar className="h-4 w-4" />
             <span>{post.date}</span>
           </div>
-          <div className="flex items-center gap-1">
-            <Clock className="w-4 h-4" />
-            <span>{post.readTime}</span>
-          </div>
+          <span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-foreground/80">
+            {post.detail}
+          </span>
         </div>
 
-        {/* Read More */}
-        <button className="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
-          Read More
-          <ArrowRight className="w-4 h-4" />
-        </button>
+        <div className="flex items-center gap-2 text-sm font-semibold text-primary transition-all group-hover:gap-3">
+          <span>{post.ctaLabel}</span>
+          <ArrowRight className="h-4 w-4" />
+        </div>
       </div>
     </motion.article>
   );
