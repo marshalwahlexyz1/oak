@@ -284,7 +284,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeading
             title="Latest News, Papers & Talks"
-            subtitle="The homepage now surfaces your freshest milestones first, so visitors immediately see the award, the new DIMVA acceptance, and your recent conference presentation."
+            subtitle="Recent awards, paper acceptances, and conference presentations."
           />
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
             {updates.map((post, idx) => (
@@ -371,14 +371,14 @@ export default function Home() {
                 <div className="flex flex-col justify-between gap-5 p-8">
                   <div className="inline-flex w-fit items-center gap-3 rounded-full bg-accent/10 px-4 py-2 text-sm font-semibold text-primary">
                     <Trophy className="h-4 w-4 text-accent" />
-                    {featuredAward.year}
+                    {featuredAward.title}
                   </div>
                   <div className="rounded-[28px] bg-secondary/70 p-6">
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary/60">
-                      Why it matters
+                      Awarded paper
                     </p>
                     <p className="mt-3 text-muted-foreground">
-                      The award instantly strengthens the credibility of your research story, so this redesign gives it prominent placement instead of leaving it buried in a generic list.
+                      The Cost of Convenience: Identifying, Analyzing, and Mitigating Predatory Loan Applications
                     </p>
                   </div>
                 </div>

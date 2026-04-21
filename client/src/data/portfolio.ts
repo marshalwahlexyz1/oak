@@ -13,9 +13,9 @@ export const portfolioData = {
   blog: [
     {
       id: 1,
-      title: "CISE Best Paper Award 2026 for 'The Cost of Convenience'",
-      excerpt: "Received the CISE Best Paper Award after student and faculty committee review. I presented the paper to the CISE community during the award event on April 10, 2026.",
-      content: "Recognized with the CISE Best Paper Award 2026 for 'The Cost of Convenience,' a paper on identifying, analyzing, and mitigating predatory loan applications.",
+      title: "CISE Best Paper Award 2026",
+      excerpt: "Received the CISE Best Paper Award 2026 for 'The Cost of Convenience: Identifying, Analyzing, and Mitigating Predatory Loan Applications' and presented the work to the CISE community on April 10, 2026.",
+      content: "Recognized with the CISE Best Paper Award 2026 for 'The Cost of Convenience: Identifying, Analyzing, and Mitigating Predatory Loan Applications.'",
       image: "",
       date: "April 10, 2026",
       detail: "Award presentation",
@@ -123,7 +123,7 @@ export const portfolioData = {
       technologies: ["Static Analysis", "Dynamic Testing", "Network Traffic Inspection", "LLM"],
       link: null,
       conference: "ACM AsiaCCS 2026",
-      publishedAt: "Best Paper Award",
+      publishedAt: "CISE Best Paper Award 2026",
     },
     {
       id: 3,
@@ -167,10 +167,10 @@ export const portfolioData = {
   awards: [
     {
       id: 1,
-      title: "CISE Best Paper Award",
+      title: "CISE Best Paper Award 2026",
       organization: "Boston University CISE",
       year: "2026",
-      description: "Awarded for 'The Cost of Convenience' and recognized during the CISE Best Paper Award event on April 10, 2026.",
+      description: "Awarded for 'The Cost of Convenience: Identifying, Analyzing, and Mitigating Predatory Loan Applications' and recognized during the CISE Best Paper Award event on April 10, 2026.",
       icon: "trophy",
     },
     {
