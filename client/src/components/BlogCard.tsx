@@ -1,5 +1,6 @@
-import { ArrowRight, Calendar, FileText, Mic, Trophy } from "lucide-react";
+import { ArrowRight, BadgeCheck, Calendar, FileText, Mic, Trophy, Users } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { cn } from "@/lib/utils";
 
 interface BlogPost {
   id: number;
@@ -19,6 +20,8 @@ interface BlogPost {
 interface BlogCardProps {
   post: BlogPost;
   index: number;
+  featured?: boolean;
+  className?: string;
 }
 
 const cardStyles = {
@@ -37,16 +40,26 @@ const cardStyles = {
     icon: Mic,
     shell: "from-amber-700 via-primary to-slate-900",
   },
+  event: {
+    label: "Event",
+    icon: Users,
+    shell: "from-ink via-primary to-signal/80",
+  },
+  role: {
+    label: "Role",
+    icon: BadgeCheck,
+    shell: "from-[#d97757] via-[#8a4532] to-ink",
+  },
 } as const;
 
-export function BlogCard({ post, index }: BlogCardProps) {
+export function BlogCard({ post, index, featured = false, className }: BlogCardProps) {
   const style = cardStyles[post.kind as keyof typeof cardStyles] ?? cardStyles.paper;
   const Icon = style.icon;
 
   return (
-    <Reveal delay={index * 70} className="h-full">
+    <Reveal delay={index * 70} className={cn("h-full", className)}>
       <article className="group h-full overflow-hidden rounded-[28px] border border-border/60 bg-white/90 shadow-lg shadow-slate-900/5 transition-[transform,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:shadow-2xl">
-        <div className={`relative overflow-hidden bg-gradient-to-br ${style.shell} p-6 text-white`}>
+        <div className={cn("relative overflow-hidden bg-gradient-to-br p-6 text-white", style.shell, featured && "md:p-8")}>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.24),transparent_42%)]"></div>
           <div className="relative z-10 flex items-start justify-between gap-4">
             <div className="flex items-center gap-3">
@@ -65,7 +78,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
             </span>
           </div>
 
-          <h3 className="relative z-10 mt-8 text-2xl font-bold leading-tight text-white">
+          <h3 className={cn("relative z-10 mt-8 font-bold leading-tight text-white", featured ? "text-3xl md:text-4xl" : "text-2xl")}>
             {post.title}
           </h3>
         </div>
