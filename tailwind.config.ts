@@ -2,6 +2,8 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
+  // Gate every `hover:` variant behind (hover: hover) so taps on touch screens don't leave sticky hover states.
+  future: { hoverOnlyWhenSupported: true },
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -75,6 +77,8 @@ export default {
           foreground: "hsl(var(--sidebar-accent-foreground) / <alpha-value>)",
           border: "var(--sidebar-accent-border)"
         },
+        ink: "hsl(var(--ink) / <alpha-value>)",
+        signal: "hsl(var(--signal) / <alpha-value>)",
         status: {
           online: "rgb(34 197 94)",
           away: "rgb(245 158 11)",
@@ -83,9 +87,14 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["'Inter'", "sans-serif"],
-        display: ["'Playfair Display'", "serif"],
-        mono: ["'JetBrains Mono'", "monospace"],
+        sans: ["'Manrope Variable'", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["'Fraunces Variable'", "ui-serif", "Georgia", "serif"],
+        mono: ["'JetBrains Mono Variable'", "ui-monospace", "SFMono-Regular", "monospace"],
+      },
+      transitionTimingFunction: {
+        "out-strong": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "in-out-strong": "cubic-bezier(0.77, 0, 0.175, 1)",
+        drawer: "cubic-bezier(0.32, 0.72, 0, 1)",
       },
       keyframes: {
         "accordion-down": {
