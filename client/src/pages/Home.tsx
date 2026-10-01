@@ -44,6 +44,8 @@ export default function Home() {
   const featuredAward = awards?.[0];
   const additionalAwards = awards?.slice(1) ?? [];
   const newsItems = [
+    "Now Claude Vertical Ambassador for Boston (Security)",
+    "Hosted Boston Build Day on September 23, 2026",
     "CISE Best Paper Award 2026 for The Cost of Convenience",
     "DIMVA '26 accepted paper in Chania, Greece, July 1-3, 2026",
     "ACM ASIACCS 2026 paper in Bangalore, India, June 1-5, 2026",
@@ -91,7 +93,7 @@ export default function Home() {
               style={delay(0)}
             >
               <Sparkles className="h-4 w-4 text-accent" />
-              2026 research momentum
+              Claude Vertical Ambassador · Boston (Security)
             </div>
 
             <p className="fade-up mt-6 text-sm font-semibold uppercase tracking-[0.32em] text-primary/55" style={delay(60)}>
@@ -261,11 +263,18 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeading
             title="Latest News, Papers & Talks"
-            subtitle="Recent awards, paper acceptances, and conference presentations."
+            subtitle="Community work, awards, paper acceptances, and conference presentations."
           />
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {/* The newest item spans two columns, so five cards fill the grid evenly */}
             {updates.map((post, idx) => (
-              <BlogCard key={post.id} post={post} index={idx} />
+              <BlogCard
+                key={post.id}
+                post={post}
+                index={idx}
+                featured={idx === 0}
+                className={idx === 0 ? "md:col-span-2" : undefined}
+              />
             ))}
           </div>
         </div>
