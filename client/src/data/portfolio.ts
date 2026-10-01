@@ -12,6 +12,34 @@ export const portfolioData = {
 
   blog: [
     {
+      id: 5,
+      title: "Hosted Boston Build Day",
+      excerpt: "As Claude Vertical Ambassador for Boston (Security), I hosted Boston Build Day on September 23, 2026, bringing the local community together to build with Claude.",
+      content: "Hosted Boston Build Day on September 23, 2026.",
+      image: "",
+      date: "September 23, 2026",
+      detail: "Community build day",
+      tags: ["Community", "Claude", "Boston"],
+      kind: "event",
+      venue: "Boston, MA",
+      status: "Hosted",
+      ctaLabel: "Community event",
+    },
+    {
+      id: 4,
+      title: "Claude Vertical Ambassador for Boston (Security)",
+      excerpt: "Now serving as the Claude Vertical Ambassador for Boston's security community, connecting researchers, engineers, and students who are building with Claude.",
+      content: "Claude Vertical Ambassador, Boston (Security).",
+      image: "",
+      date: "2026",
+      detail: "Ambassador role",
+      tags: ["Claude", "Security", "Community"],
+      kind: "role",
+      venue: "Boston, MA",
+      status: "New role",
+      ctaLabel: "Community leadership",
+    },
+    {
       id: 1,
       title: "CISE Best Paper Award 2026",
       excerpt: "Received the CISE Best Paper Award 2026 for 'The Cost of Convenience: Identifying, Analyzing, and Mitigating Predatory Loan Applications' and presented the work to the CISE community on April 10, 2026.",
@@ -83,6 +111,13 @@ export const portfolioData = {
   ],
 
   experience: [
+    {
+      id: 4,
+      role: "Claude Vertical Ambassador, Boston (Security)",
+      company: "Claude by Anthropic",
+      duration: "2026--Present",
+      description: "Lead the security vertical of the Claude ambassador community in Boston, bringing together security researchers, engineers, and students to build with Claude. Hosted Boston Build Day on September 23, 2026.",
+    },
     {
       id: 1,
       role: "Graduate Teaching Assistant, EC521 Cybersecurity",
