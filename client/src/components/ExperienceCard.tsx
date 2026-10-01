@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
 import { Calendar, Building2 } from "lucide-react";
 import type { Experience } from "@shared/schema";
+import { Reveal } from "@/components/Reveal";
+import { useInViewOnce } from "@/lib/motion";
 
 interface ExperienceCardProps {
   experience: Experience;
@@ -8,48 +9,38 @@ interface ExperienceCardProps {
 }
 
 export function ExperienceCard({ experience, index }: ExperienceCardProps) {
+  // The dot lights up once the item reaches the middle of the viewport, roughly where the drawn line is.
+  const [dotRef, reached] = useInViewOnce<HTMLSpanElement>("0px 0px -45% 0px");
+
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className="relative pl-8 md:pl-0 group"
-    >
-      <div className="md:grid md:grid-cols-5 md:gap-8 items-start">
-        {/* Timeline Line (Desktop) */}
-        <div className="hidden md:block absolute left-[20%] top-0 bottom-0 w-px bg-border group-last:bottom-auto group-last:h-full"></div>
-        
-        {/* Date Section */}
-        <div className="md:col-span-1 md:text-right relative">
-          <div className="hidden md:block absolute right-[-17px] top-2 w-3 h-3 rounded-full bg-accent border-4 border-white z-10"></div>
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground bg-secondary/50 px-3 py-1 rounded-full">
-            <Calendar className="w-3 h-3" />
-            {experience.duration}
-          </span>
-        </div>
+    <li className="relative pb-12 pl-10 last:pb-0 md:grid md:grid-cols-[10rem_1fr] md:gap-x-10 md:pl-0">
+      <span
+        ref={dotRef}
+        aria-hidden="true"
+        className={`absolute left-[9px] top-[9px] h-3 w-3 rounded-full border-2 transition-[background-color,border-color,box-shadow] duration-300 ease-out-strong md:left-[calc(11.25rem-6px)] ${
+          reached
+            ? "border-accent bg-accent shadow-[0_0_0_5px_hsl(var(--accent)/0.18)]"
+            : "border-border bg-white"
+        }`}
+      />
 
-        {/* Content Section */}
-        <div className="md:col-span-4 bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow relative">
-           {/* Timeline Line (Mobile) */}
-           <div className="md:hidden absolute left-[-20px] top-8 w-3 h-3 rounded-full bg-accent border-2 border-white z-10"></div>
-           <div className="md:hidden absolute left-[-15px] top-0 bottom-[-24px] w-px bg-border"></div>
+      <Reveal delay={index * 60} className="md:pt-1 md:text-right">
+        <span className="inline-flex items-center gap-2 rounded-full bg-secondary/80 px-3 py-1 text-sm font-medium text-muted-foreground">
+          <Calendar className="h-3 w-3" />
+          {experience.duration}
+        </span>
+      </Reveal>
 
-           <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
-            <div>
-              <h3 className="text-xl font-bold text-foreground font-display">{experience.role}</h3>
-              <div className="flex items-center gap-2 text-primary font-medium mt-1">
-                <Building2 className="w-4 h-4" />
-                {experience.company}
-              </div>
-            </div>
+      <Reveal delay={index * 60 + 60} className="mt-3 md:mt-0">
+        <div className="rounded-2xl border border-border/50 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
+          <h3 className="font-display text-xl font-bold text-foreground">{experience.role}</h3>
+          <div className="mt-1 flex items-center gap-2 font-medium text-primary">
+            <Building2 className="h-4 w-4" />
+            {experience.company}
           </div>
-          
-          <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
-            {experience.description}
-          </div>
+          <div className="mt-4 whitespace-pre-wrap leading-relaxed text-muted-foreground">{experience.description}</div>
         </div>
-      </div>
-    </motion.div>
+      </Reveal>
+    </li>
   );
 }
