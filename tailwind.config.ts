@@ -87,8 +87,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["'Manrope Variable'", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["'Fraunces Variable'", "ui-serif", "Georgia", "serif"],
+        sans: ["'Archivo Variable'", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["'Archivo Variable'", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["'JetBrains Mono Variable'", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       transitionTimingFunction: {

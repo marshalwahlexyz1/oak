@@ -51,26 +51,26 @@ export function AwardMedal({ transform, glare }: Pick<ReturnType<typeof useTilt>
   return (
     <motion.div
       style={{ transform }}
-      className="relative mx-auto h-40 w-40 drop-shadow-[0_18px_24px_rgba(21,45,84,0.28)] md:h-48 md:w-48"
+      className="relative mx-auto h-36 w-36 drop-shadow-[0_18px_24px_rgba(0,0,0,0.4)] md:h-40 md:w-40"
     >
       <div className="sheen h-full w-full rounded-full">
         <svg viewBox="0 0 200 200" className="h-full w-full" role="img" aria-label="CISE Best Paper 2026 medal">
           <defs>
             <linearGradient id="medal-gold" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#f8dd9c" />
-              <stop offset="45%" stopColor="#dca23a" />
-              <stop offset="70%" stopColor="#b07a1c" />
-              <stop offset="100%" stopColor="#f2d184" />
+              <stop offset="0%" stopColor="#f59a85" />
+              <stop offset="45%" stopColor="#e2462f" />
+              <stop offset="70%" stopColor="#b3321e" />
+              <stop offset="100%" stopColor="#f28a72" />
             </linearGradient>
             <radialGradient id="medal-navy" cx="50%" cy="35%" r="70%">
-              <stop offset="0%" stopColor="#24447a" />
-              <stop offset="100%" stopColor="#11203d" />
+              <stop offset="0%" stopColor="#2b2b2b" />
+              <stop offset="100%" stopColor="#0c0c0c" />
             </radialGradient>
           </defs>
           <circle cx="100" cy="100" r="97" fill="url(#medal-gold)" />
           <circle cx="100" cy="100" r="89" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
           <circle cx="100" cy="100" r="82" fill="url(#medal-navy)" />
-          <circle cx="100" cy="100" r="76" fill="none" stroke="#dca23a" strokeOpacity="0.45" strokeWidth="0.8" />
+          <circle cx="100" cy="100" r="76" fill="none" stroke="#e2462f" strokeOpacity="0.5" strokeWidth="0.8" />
           {[...leaves(-1), ...leaves(1)].map((leaf, idx) => (
             <ellipse
               key={idx}
@@ -82,13 +82,13 @@ export function AwardMedal({ transform, glare }: Pick<ReturnType<typeof useTilt>
               transform={`rotate(${leaf.rotate} ${leaf.cx} ${leaf.cy})`}
             />
           ))}
-          <text x="100" y="80" textAnchor="middle" fill="#f2d184" fontSize="10" letterSpacing="4" fontFamily="'JetBrains Mono Variable', monospace">
+          <text x="100" y="80" textAnchor="middle" fill="#f59a85" fontSize="10" letterSpacing="4" fontFamily="'JetBrains Mono Variable', monospace">
             CISE
           </text>
-          <text x="100" y="107" textAnchor="middle" fill="#ffffff" fontSize="20" fontWeight="600" fontFamily="'Fraunces Variable', serif">
-            Best Paper
+          <text x="100" y="107" textAnchor="middle" fill="#ffffff" fontSize="17" fontWeight="800" fontStretch="125%" fontFamily="'Archivo Variable', sans-serif">
+            BEST PAPER
           </text>
-          <text x="100" y="128" textAnchor="middle" fill="#f2d184" fontSize="11" letterSpacing="2" fontFamily="'JetBrains Mono Variable', monospace">
+          <text x="100" y="128" textAnchor="middle" fill="#f59a85" fontSize="11" letterSpacing="2" fontFamily="'JetBrains Mono Variable', monospace">
             2026
           </text>
         </svg>
