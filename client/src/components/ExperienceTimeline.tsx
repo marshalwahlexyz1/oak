@@ -13,7 +13,7 @@ export function ExperienceTimeline({ items }: { items: Experience[] }) {
 
   return (
     <ol ref={ref} className="relative">
-      <span aria-hidden="true" className="absolute bottom-1 left-[15px] top-2 w-px bg-border md:left-[11.25rem]" />
+      <span aria-hidden="true" className="absolute bottom-1 left-[15px] top-2 w-px bg-foreground/15 md:left-[11.25rem]" />
       <motion.span
         aria-hidden="true"
         className="absolute bottom-1 left-[15px] top-2 w-px origin-top bg-accent md:left-[11.25rem]"
