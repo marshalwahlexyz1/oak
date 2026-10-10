@@ -198,17 +198,21 @@ export function XRayLens() {
   };
 
   return (
-    <section id="lens" className="relative overflow-hidden bg-ink py-24 text-white">
+    <section id="lens" className="relative overflow-hidden bg-ink py-16 text-white md:py-20">
       <div aria-hidden="true" className="xray-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_70%_45%,black,transparent_70%)]" />
 
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr] lg:gap-x-20 lg:gap-y-10">
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[1fr_auto] lg:grid-rows-[auto_1fr] lg:gap-x-20 lg:gap-y-8">
         <Reveal className="max-w-xl lg:col-start-1 lg:row-start-1">
-          <p className="font-mono text-xs font-medium uppercase tracking-[0.28em] text-signal">Research lens</p>
-          <h2 className="mt-4 text-4xl font-bold leading-[1.05] text-white md:text-5xl">
+          <div className="label mb-4 grid grid-cols-[auto_1fr_auto] items-center gap-4 text-white/55">
+            <span>[02]</span>
+            <span aria-hidden="true" className="h-px bg-white/20" />
+            <span>Research lens</span>
+          </div>
+          <h2 className="wide text-[clamp(24px,3.2vw,40px)] font-extrabold uppercase leading-[0.95] text-white">
             Every app has a surface.
-            <span className="block text-accent">My research studies what's underneath.</span>
+            <span className="block text-accent">My research studies what&rsquo;s underneath.</span>
           </h2>
-          <p className="mt-6 text-lg leading-8 text-white/70">
+          <p className="mt-5 text-base leading-relaxed text-white/65">
             Run the lens over this fictional lending app. On top is what a borrower sees. Underneath are the
             patterns my papers audit: permissions nobody meaningfully agreed to, contact lists shipped to remote
             servers, and scam conversations that follow a script.
@@ -218,7 +222,7 @@ export function XRayLens() {
         <div ref={phoneRef} className="relative lg:sticky lg:top-[124px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,hsl(var(--signal)/0.16),transparent)]"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,hsl(var(--accent)/0.14),transparent)]"
           />
           <figure className="relative mx-auto w-[300px] max-w-full">
             <div className="rounded-[46px] bg-gradient-to-b from-[#1f2c47] to-[#0a111f] p-[10px] shadow-[0_40px_80px_-24px_rgba(0,0,0,0.7),inset_0_0_0_1px_rgba(255,255,255,0.08)]">
@@ -251,7 +255,7 @@ export function XRayLens() {
                   <span className="absolute bottom-[-7px] left-1/2 h-3 w-0.5 -translate-x-1/2 rounded-full bg-accent" />
                   <span className="absolute left-[-7px] top-1/2 h-0.5 w-3 -translate-y-1/2 rounded-full bg-accent" />
                   <span className="absolute right-[-7px] top-1/2 h-0.5 w-3 -translate-y-1/2 rounded-full bg-accent" />
-                  <span className="absolute -right-2 top-3 rounded-full bg-accent px-2 py-0.5 font-mono text-[9px] font-bold tracking-[0.2em] text-ink">
+                  <span className="absolute -right-2 top-3 rounded-full bg-accent px-2 py-0.5 font-mono text-[9px] font-bold tracking-[0.2em] text-white">
                     X-RAY
                   </span>
                 </motion.div>
@@ -264,7 +268,7 @@ export function XRayLens() {
         </div>
 
         <Reveal delay={80} className="max-w-xl lg:col-start-1 lg:row-start-2">
-          <ul className="space-y-3">
+          <ul className="space-y-2">
             {FINDINGS.map((finding) => {
               const isActive = active === finding.id;
               return (
@@ -274,30 +278,30 @@ export function XRayLens() {
                     aria-pressed={isActive}
                     onClick={() => focusFinding(finding.id)}
                     className={cn(
-                      "w-full rounded-2xl border p-4 text-left transition-[background-color,border-color,transform] duration-200 ease-out-strong active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                      "w-full rounded-[16px] border p-3.5 text-left transition-[background-color,border-color,transform] duration-200 ease-out-strong active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                       isActive
                         ? "border-accent/60 bg-white/[0.07]"
                         : "border-white/10 hover:border-white/25 hover:bg-white/[0.03]",
                     )}
                   >
                     <span className="flex items-center justify-between gap-3">
-                      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-signal">{finding.tag}</span>
+                      <span className="label text-accent">{finding.tag}</span>
                       <span className="text-right text-xs text-white/50">{finding.venue}</span>
                     </span>
-                    <span className="mt-2 block font-display text-lg font-semibold text-white">{finding.title}</span>
-                    <span className="mt-1 block text-sm leading-6 text-white/65">{finding.body}</span>
+                    <span className="mt-1.5 block text-[15px] font-bold text-white">{finding.title}</span>
+                    <span className="mt-1 block text-[13px] leading-5 text-white/60">{finding.body}</span>
                   </button>
                 </li>
               );
             })}
           </ul>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
             <button
               type="button"
               aria-pressed={revealAll}
               onClick={() => setRevealAllAnimated(!revealAll)}
-              className={`inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-ink hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${press}`}
+              className={`inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${press}`}
             >
               <ScanEye className="h-4 w-4" aria-hidden="true" />
               {revealAll ? "Back to the surface" : "X-ray the whole screen"}
@@ -414,7 +418,7 @@ function XRayScreen({ active }: { active: HotspotId | null }) {
 
       <XBlock id="fraud" label="SCAM-STAGE MODEL" active={active} className="h-[76px]">
         <p className="text-white/60">
-          rapport → trust → <span className="rounded bg-accent px-1 text-ink">ask</span> → extract
+          rapport → trust → <span className="rounded bg-accent px-1 text-white">ask</span> → extract
         </p>
         <div className="mt-1 flex items-center gap-2">
           <span className="text-white/60">P(fraud)</span>
@@ -469,7 +473,7 @@ function Row({ k, v, flag, danger }: { k: string; v: string; flag?: boolean; dan
   return (
     <div className="flex items-baseline justify-between gap-2">
       <span className="truncate text-white/60">{k}</span>
-      <span className={cn("shrink-0", danger ? "text-rose-400" : flag ? "text-accent" : "text-white/90")}>{v}</span>
+      <span className={cn("shrink-0", danger ? "font-semibold text-[#ff6b52]" : flag ? "text-[#f59a85]" : "text-white/90")}>{v}</span>
     </div>
   );
 }

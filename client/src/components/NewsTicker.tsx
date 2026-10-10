@@ -9,7 +9,7 @@ interface NewsTickerProps {
 export function NewsTicker({ items }: NewsTickerProps) {
   return (
     <div
-      className="marquee fixed left-0 right-0 top-[72px] z-40 overflow-hidden border-y border-primary/10 bg-primary py-2 text-primary-foreground shadow-sm"
+      className="marquee fixed left-0 right-0 top-16 z-40 flex h-[30px] items-center overflow-hidden bg-foreground text-background"
       role="region"
       aria-label="News"
     >
@@ -17,10 +17,10 @@ export function NewsTicker({ items }: NewsTickerProps) {
         {[0, 1].map((copy) => (
           <ul key={copy} className="flex items-center gap-8 pr-8" aria-hidden={copy === 1 ? true : undefined}>
             {items.map((item) => (
-              <li key={item} className="flex items-center gap-3 px-2 text-sm font-medium">
-                <Newspaper className="h-4 w-4 text-accent" aria-hidden="true" />
-                <span className="font-semibold uppercase tracking-[0.18em] text-accent">News Flash</span>
-                <span>{item}</span>
+              <li key={item} className="label flex items-center gap-3 px-2">
+                <Newspaper className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+                <span className="text-accent">News Flash</span>
+                <span className="text-background/85">{item}</span>
                 <span className="text-accent/80" aria-hidden="true">•</span>
               </li>
             ))}
